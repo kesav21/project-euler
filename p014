@@ -1,0 +1,43 @@
+#!/usr/bin/python3
+
+
+def main():
+
+    # r = range(2, 10)  # 9, 20
+    # r = range(2, 1000) # 871, 179
+    r = range(2, 100000)  # 77031, 351
+    # r = range(2, 1000000)  # 837799, the max length was 525
+
+    m_i = get_max_collatz(r)
+    print(m_i)
+
+
+def get_max_collatz(r):
+
+    m_i, m_l = 1, 1
+    for i in r:
+        l = get_collatz_len(i)
+        if m_l < l:
+            m_i, m_l = i, l
+    return m_i
+
+
+def get_collatz_len(number):
+
+    # base case
+    if number == 1:
+        return 1
+    # recursive case
+    new = get_new_collatz(number)
+    return 1 + get_collatz_len(new)
+
+
+def get_new_collatz(number):
+    if number % 2 == 0:
+        return number / 2
+    else:
+        return 3 * number + 1
+
+
+if __name__ == "__main__":
+    main()

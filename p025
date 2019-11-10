@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+
+import math
+
+
+def main():
+    print(get_factorial(1000))
+
+
+def get_factorial(n):
+    """
+    return the index of the first factorial with number of digits equal to n
+    """
+    a, b, count = 0, 1, 0
+    while True:
+        a, b, count = b, a + b, count + 1
+        digits = int(math.log10(a)) + 1
+        if digits == n:
+            return count
+
+
+if __name__ == "__main__":
+    main()

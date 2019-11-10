@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+
+
+def main():
+
+    # r = range(2, 20 + 1)
+    r = range(2, 1000 + 1)
+    m = max(get_greatest_repeater(r), key=lambda x: x[1])
+    print(m[0])
+
+
+def get_greatest_repeater(r):
+    for i in r:
+        yield i, get_repeating(i)
+
+
+def get_repeating(n):
+    r, l = 1, []
+    while True:
+        l.append(r)
+        # scale up the dividend as needed
+        # TODO: replace this if/loop thing with an analytical approach
+        if r < n:
+            r *= 10
+        while r < n:
+            l.append(0)
+            r *= 10
+        # if dividend is zero, then doesn't repeat
+        if r % n == 0:
+            return 0
+        # if the dividend has been reached before, end of loop reached
+        if r % n in l:
+            return len(l) - l.index(r % n)
+
+        r = r % n
+
+
+if __name__ == "__main__":
+    main()

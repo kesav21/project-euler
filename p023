@@ -1,0 +1,45 @@
+#!/usr/bin/python3
+
+import math
+
+
+def main():
+
+    n = 28123
+    r = range(1, n)
+
+    abundants = list(get_abundants(r))
+    not_sum_abundants = get_not_sum_abundants(r, abundants)
+    print(sum(not_sum_abundants))
+
+
+def get_not_sum_abundants(r, abundants):
+    for i in r:
+        if not is_sum_abundant(i, abundants):
+            yield i
+
+
+def is_sum_abundant(n, a):
+    return any(True for i in a if i < n and is_abundant(n - i))
+
+
+def get_abundants(r):
+    return (i for i in r if is_abundant(i))
+
+
+def is_abundant(n):
+    return sum(divisors(n)) > n
+
+
+def divisors(n):
+    yield 1
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            yield i
+            j = n // i
+            if i != j:
+                yield j
+
+
+if __name__ == "__main__":
+    main()

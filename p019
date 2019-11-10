@@ -1,0 +1,65 @@
+#!/usr/bin/python3
+
+import itertools as it
+
+months = {
+    1: 31,
+    2: {"nonleap": 28, "leap": 29},
+    3: 31,
+    4: 30,
+    5: 31,
+    6: 30,
+    7: 31,
+    8: 31,
+    9: 30,
+    10: 31,
+    11: 30,
+    12: 31,
+}
+
+# days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+days = ["tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", "monday"]
+
+
+def main():
+    # the range of years you want to count over
+    years = range(1901, 2001)
+    # the day on the beginning of the count
+    # ex: 1 jan 1901 was a tuesday
+    first_day = "tuesday"
+
+    print(get_count(years, first_day))
+
+
+def get_count(years, first_day):
+    """
+    TODO: use first_day somehow
+    """
+    count = 0
+    daycount = 0
+    for year in years:
+        for month in range(1, 12 + 1):
+            maxdays = get_max_days(month, year)
+            for date in range(1, maxdays + 1):
+                if daycount % 7 == 5 and date == 1:
+                    count += 1
+                daycount += 1
+    return count
+
+
+def get_max_days(month, year):
+    if month == 2:
+        if is_leap_year(year):
+            return months[month]["leap"]
+        return months[month]["nonleap"]
+    return months[month]
+
+
+def is_leap_year(year):
+    return (
+        (year % 4 == 0) and (year % 100 != 0) or (year % 100 == 0 and year % 400 == 0)
+    )
+
+
+if __name__ == "__main__":
+    main()

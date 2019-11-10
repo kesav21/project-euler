@@ -1,0 +1,24 @@
+#!/usr/bin/python3
+
+
+def main():
+    fac = factorial(100)
+    sum_digits = get_sum_digits(fac)
+    print(sum_digits)
+
+
+def get_sum_digits(n):
+    s = 0
+    for i in str(n):
+        s += int(i)
+    return s
+
+
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+
+if __name__ == "__main__":
+    main()

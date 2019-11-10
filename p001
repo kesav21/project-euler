@@ -1,0 +1,13 @@
+#!/bin/env python
+
+
+def divides(number, divisors):
+    return ((number % divisor == 0) for divisor in divisors)
+
+
+def sum_multiples(divisors, threshold):
+    return sum(number for number in range(threshold) if any(divides(number, divisors)))
+
+
+if __name__ == "__main__":
+    print(sum_multiples([3, 5], 1000))

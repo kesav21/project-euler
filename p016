@@ -1,0 +1,16 @@
+#!/usr/bin/python3
+
+
+def main():
+    print(get_sum_digits(2 ** 1000))
+
+
+def get_sum_digits(n):
+    s = 0
+    for i in str(n):
+        s += int(i)
+    return s
+
+
+if __name__ == "__main__":
+    main()

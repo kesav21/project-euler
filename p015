@@ -1,0 +1,33 @@
+#!/usr/bin/python3
+
+walk_hist = {}
+
+
+def main():
+    print(walk(20, 20))
+
+
+def walk(m, n):
+
+    if m == 0 or n == 0:
+        return 1
+
+    key = f"{m}x{n}"
+
+    if key in walk_hist:
+        return walk_hist[key]
+
+    walk_len = recur_walk(m, n)
+    walk_hist[key] = walk_len
+
+    return walk_len
+
+
+def recur_walk(m, n):
+    if m == n:
+        return 2 * walk(m, n - 1)
+    return walk(m, n - 1) + walk(m - 1, n)
+
+
+if __name__ == "__main__":
+    main()

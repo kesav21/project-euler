@@ -1,0 +1,39 @@
+#!/usr/bin/python3
+
+
+def main():
+    r = range(1, 10000)
+    s = get_amicables(r)
+    print(s)
+    print(sum(s))
+
+
+def get_amicables(r):
+
+    amicables = set()
+    for i in r:
+        k = is_amicable(i)
+        if k != 0:
+            amicables.add(i)
+            amicables.add(k)
+    return amicables
+
+
+def is_amicable(a):
+    da = get_sum_divisors(a)
+    db = get_sum_divisors(da)
+    if a == db and a != da:
+        return da
+    return 0
+
+
+def get_sum_divisors(n):
+    s = 0
+    for i in range(1, n):
+        if n % i == 0:
+            s += i
+    return s
+
+
+if __name__ == "__main__":
+    main()

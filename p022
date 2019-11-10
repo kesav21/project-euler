@@ -1,0 +1,30 @@
+#!/usr/bin/python3
+
+
+def main():
+    names = get_names("p022_names.txt")
+    s = get_sum_score(names)
+    print(s)
+
+
+def get_sum_score(names):
+    s = 0
+    for (i, name) in enumerate(sorted(names)):
+        s += (i + 1) * get_sum_name(name)
+    return s
+
+
+def get_sum_name(name):
+    s = 0
+    for l in name:
+        s += ord(l) - 64
+    return s
+
+
+def get_names(filename):
+    with open(filename, "r") as f:
+        return f.read().replace('"', "").split(",")
+
+
+if __name__ == "__main__":
+    main()
