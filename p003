@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+
+def main():
+    # pf = get_factors(13195)
+    f = get_factors(600851475143)
+    lpf = get_largest_pf(f)
+    print(lpf)
+
+
+def get_factors(n):
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            yield i
+
+
+def get_largest_pf(pf):
+    l = list(pf)[::-1]
+    for i in l:
+        if is_prime(i):
+            return i
+
+
+def is_prime(n):
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+
+if __name__ == "__main__":
+    main()
