@@ -2,10 +2,16 @@
 
 
 def main():
-    print(sum(diagonals()))
+    print(sum(diagonals(1001)))
+
+    # easiest solution (from problem thread)
+    # s = 1
+    # for i in range(3, 1001 + 1, 2):
+    #     s += 4 * i ** 2 - 6 * i + 6
+    # print(s)
 
 
-def diagonals():
+def diagonals(n):
 
     yield 1
 
@@ -13,18 +19,14 @@ def diagonals():
     start = 1 + dx
     end = start + (4 - 1) * dx
 
-    for i in range(start, end + 1, dx):
-        # print(i)
-        yield i
+    yield from range(start, end + 1, dx)
 
-    for k in range(int((1001 - 3) / 2)):
+    for k in range(int((n - 3) / 2)):
         dx += 2
         start = end + dx
         end = start + (4 - 1) * dx
 
-        for i in range(start, end + 1, dx):
-            # print(i)
-            yield i
+        yield from range(start, end + 1, dx)
 
 
 if __name__ == "__main__":
