@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+
+
+def main():
+    # looking through the examples, i noticed something.
+    # the minimum value of both examples is the same.
+    # turns out, the quadratic that returns the greatest
+    # number of consecutive primes is just euler's quadratic,
+    # but shifted to the right.
+    # example 2 is just example 1, but shifted to the right
+    # the transformation is governed by the following formula:
+    # f(x) = (x-n)^2 + (x-n) + 41
+    # example 2 if just f(x) with n=40
+    # the solution to problem 27 is f(x) with n=31
+
+    n = 31
+    a = 1 - 2 * n
+    b = 41 - n + n ** 2
+    print(a * b)
+
+
+if __name__ == "__main__":
+    main()
