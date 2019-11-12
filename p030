@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+
+
+def main():
+    # we don't need to check 7 digit numbers because 9_999_999 > 413_343
+    # i experimentally reduced the max to 200_000
+    # this results in the same answer as an upper bound of 9_999_999
+    m = 200_000
+    r = range(2, m)
+    s = sum(i for i in range(2, 200_000) if i == get_fpds(i))
+    print(s)
+
+
+def get_fpds(n):
+    """
+    checks if number is a fifth power digit sum
+    """
+    return sum(int(i) ** 5 for i in str(n))
+
+
+if __name__ == "__main__":
+    main()
