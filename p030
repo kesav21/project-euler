@@ -5,8 +5,6 @@ def main():
     # we don't need to check 7 digit numbers because 9_999_999 > 413_343
     # i experimentally reduced the max to 200_000
     # this results in the same answer as an upper bound of 9_999_999
-    m = 200_000
-    r = range(2, m)
     s = sum(i for i in range(2, 200_000) if i == get_fpds(i))
     print(s)
 
