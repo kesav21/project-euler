@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+
+# 1/4, 2/5, 1/5, 4/8
+# 1/4, 2/5, 1/5, 1/2
+# (1*2*1*1)/(4*5*5*2)
+# (1*1*1)/(4*5*5)
+# 1/(4*5*5)
+# 1/100
+# 100 is the solution
+
+
+def main():
+
+    for i in range(10, 100):
+        for j in range(10, 100):
+            have_common(i, j)
+
+
+def have_common(i, j):
+    if i == j:
+        return
+
+    a, b = str(i)
+    j = str(j)
+
+    if a in j:
+        try:
+            b, c = int(b), int(j.replace(a, ""))
+            k = int(b) / int(j.replace(a, ""))
+            if k == i / int(j):
+                print(f"{j}/{i} or {c}/{b}")
+
+        except (ValueError, ZeroDivisionError):
+            pass
+
+
+if __name__ == "__main__":
+    main()
