@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+
+
+def main():
+
+    target = 200
+    coins = [1, 2, 5, 10, 20, 50, 100, 200]
+
+    print(f"{target=}")
+    print(f"{coins=}")
+    print()
+    num_partitions = partition_m(target, coins)
+    print(f"{num_partitions=}")
+
+
+def partition_m(target, coins):
+
+    if len(coins) == 0:
+        return 0
+
+    if len(coins) == 1:
+        if target % coins[0] == 0:
+            return 1
+        return 0
+
+    coins = sorted(coins, reverse=True)
+    coin = coins.pop(0)
+
+    r1 = list(range(target // coin + 1))
+    return sum(partition_m(target - i * coin, coins) for i in r1)
+
+
+if __name__ == "__main__":
+    main()
