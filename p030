@@ -13,8 +13,21 @@ def get_fpds(n):
     """
     checks if number is a fifth power digit sum
     """
-    return sum(int(i) ** 5 for i in str(n))
+    return sum(fifth_power[i] for i in str(n))
 
+
+fifth_power = {
+    "0": 0,
+    "1": 1,
+    "2": 32,
+    "3": 243,
+    "4": 1024,
+    "5": 5 ** 5,
+    "6": 6 ** 5,
+    "7": 7 ** 5,
+    "8": 8 ** 5,
+    "9": 9 ** 5,
+}
 
 if __name__ == "__main__":
     main()
