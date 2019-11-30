@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+
+
+def main():
+    # upper bound is 7 digits
+    # 9_999_999 > 9! * 7
+    # so: 10_000_000
+
+    s = sum(i for i in range(10, 10_000_000) if is_curious(i))
+    print(s)
+
+
+def is_curious(i):
+    return i == sum(factorial[j] for j in str(i))
+
+
+factorial = {
+    "0": 1,
+    "1": 1,
+    "2": 2,
+    "3": 6,
+    "4": 24,
+    "5": 120,
+    "6": 720,
+    "7": 5040,
+    "8": 40320,
+    "9": 362880,
+}
+
+if __name__ == "__main__":
+    main()
