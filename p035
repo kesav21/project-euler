@@ -9,6 +9,10 @@ def main():
 
 
 def is_circular_prime(n, primes):
+    s = set(str(n))
+    d = [0, 2, 4, 5, 6, 8]
+    if any(i in s for i in d):
+        return False
     return all((i in primes) for i in get_rotations(n))
 
 
