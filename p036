@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+
+
+def main():
+    print(sum(get_palindromes(1_000_000)))
+
+
+def get_palindromes(n):
+    for i in range(n):
+        if is_palindromic(i) and is_palindromic(bin(i)[2:]):
+            yield i
+
+
+def is_palindromic(s):
+    if type(s) is not str:
+        s = str(s)
+
+    return s == "".join(reversed(s))
+
+
+if __name__ == "__main__":
+    main()
