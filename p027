@@ -8,14 +8,13 @@ def main():
     upper_a = 1000
     upper_b = 1000
 
-    brange = list(sieve(upper_b))
-
-    primes = list(sieve(f(upper_b, upper_a, upper_b)))
+    brange = set(sieve(upper_b))
+    primes = set(sieve(f(upper_b, upper_a, upper_b)))
 
     p = permutations(brange)
     for (a, b) in p:
         if prime_check(a, b, primes):
-            print(a, b, prime_count1(a, b, primes))
+            print(a, b, prime_count(a, b, primes))
 
 
 def permutations(brange):
@@ -24,7 +23,7 @@ def permutations(brange):
     )
 
 
-def prime_count1(a, b, primes):
+def prime_count(a, b, primes):
     for n in range(1, b + 1):
         if f(n, a, b) not in primes:
             return n
