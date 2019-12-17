@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+
+import operator
+
+# memoized solution to problem 14
+# if, during a collatz chain, we encounter a number k < n, just add len(chain(k))
+# it is still slower than i would like
+
+
+def main():
+    list(map(collatz_len, range(2, 1_000_000)))
+
+    k = max(collatz_dict.items(), key=operator.itemgetter(1))
+    print(k)
+
+
+collatz_dict = {}
+
+
+def collatz_len(number):
+    if number < 2:
+        return 1
+
+    if number not in collatz_dict.keys():
+        new = collatz_new(number)
+        collatz_dict[number] = 1 + collatz_len(new)
+
+    return collatz_dict[number]
+
+
+def collatz_new(number):
+    if number % 2 == 0:
+        return number / 2
+    return 3 * number + 1
+
+
+if __name__ == "__main__":
+    main()
