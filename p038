@@ -1,0 +1,82 @@
+#!/usr/bin/env python
+
+import math
+
+
+def main():
+
+    # "forms" explained:
+    # forms are just partitions of 9
+    #
+    # ex: 932718654 is of the form (4,5) because
+    # len(1 * 9327) = 4
+    # len(2 * 9327) = 5
+
+    # eyeballing some forms
+    # forms = {
+    #     (4, 5),
+    #     (2, 3, 4),
+    #     (3, 3, 3),
+    #     (1, 2, 3, 3,),
+    #     (2, 2, 2, 3),
+    #     (1, 1, 1, 3, 3,),
+    #     (1, 1, 2, 2, 3),
+    #     (1, 2, 2, 2, 2),
+    #     (1, 1, 1, 1, 2, 3),
+    #     (1, 1, 1, 2, 2, 2),
+    #     (1, 1, 1, 1, 1, 1, 3),
+    #     (1, 1, 1, 1, 1, 2, 2),
+    #     (1, 1, 1, 1, 1, 1, 1, 2),
+    #     (1, 1, 1, 1, 1, 1, 1, 1, 1),
+    # }
+
+    # only numbers of these forms will create 9 digit numbers
+    # forms = [
+    #     (4, 5),
+    #     (3, 3, 3),
+    #     (2, 2, 2, 3),
+    #     (1, 2, 2, 2, 2),
+    #     (1, 1, 1, 2, 2, 2),
+    #     (1, 1, 1, 1, 1, 1, 1, 1, 1),
+    # ]
+
+    # only numbers of these forms will create 9 digit pandigitals
+    forms = [
+        (4, 5),
+        (3, 3, 3),
+        (1, 2, 2, 2, 2),
+        (1, 1, 1, 1, 1, 1, 1, 1, 1),
+    ]
+
+    m = max(filter(is_pandigital, get_products(forms)))
+    print(m)
+
+
+def is_pandigital(number):
+    return "".join(sorted(str(number))) == "123456789"
+
+
+def get_products(forms):
+    for form in forms:
+        numbers = [i for i in get_n_digit_numbers(form[0]) if verify_digits(i, form)]
+        yield from (form_to_int(i, form) for i in numbers)
+
+
+def form_to_int(num, form):
+    return int("".join(str(num * (i + 1)) for (i, length) in enumerate(form)))
+
+
+def verify_digits(n, form):
+    return all(int_len((length + 2) * n) == i for (length, i) in enumerate(form[1:]))
+
+
+def get_n_digit_numbers(n):
+    return range(10 ** (n - 1), 10 ** n)
+
+
+def int_len(n):
+    return int(math.log10(n)) + 1
+
+
+if __name__ == "__main__":
+    main()
