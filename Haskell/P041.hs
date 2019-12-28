@@ -1,5 +1,7 @@
 #!/usr/bin/runghc
 
+module P041 where
+
 import           Data.List (permutations)
 
 
