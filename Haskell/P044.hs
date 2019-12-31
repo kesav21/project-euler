@@ -1,5 +1,7 @@
 #!/usr/bin/runghc
 
+module P044 where
+
 import           P041 (isqrt)
 
 
