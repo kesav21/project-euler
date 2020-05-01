@@ -12,3 +12,4 @@ def sieve(n):
     for i in primes:
         if i != 0:
             yield i
+    # return [i for i in primes if i != 0]

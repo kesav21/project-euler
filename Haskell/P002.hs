@@ -14,14 +14,12 @@ memoize :: (Int -> a) -> (Int -> a)
 memoize f = (map f [0 ..] !!)
 
 fibMemo :: Int -> Int
-fibMemo = fix (memoize . fib)
+fibMemo = fix $ memoize . fib
 
 sumFib :: Int -> Int
-sumFib n = sum (takeWhile (<n) (map (fibMemo) [2,5..]))
+sumFib n = sum . takeWhile (< n) . map fibMemo $ [2,5..]
 
 
 main :: IO ()
-main = do
-
-    print $ sumFib 4000000
+main = print . sumFib $ 4000000
 
