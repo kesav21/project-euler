@@ -1,0 +1,43 @@
+[lib]
+name = "lib"
+path = "src/lib.rs"
+
+[package]
+name = "project_euler_rust"
+version = "0.1.0"
+edition = "2018"
+
+[[bin]]
+name = "p047"
+path = "src/p047.rs"
+
+[[bin]]
+name = "p048"
+path = "src/p048.rs"
+
+[[bin]]
+name = "p049"
+path = "src/p049.rs"
+
+[[bin]]
+name = "p050"
+path = "src/p050.rs"
+
+[[bin]]
+name = "p052"
+path = "src/p052.rs"
+
+[[bin]]
+name = "p053"
+path = "src/p053.rs"
+
+[[bin]]
+name = "p055"
+path = "src/p055.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+itertools = "0.10.5"
+num = "0.4.0"
+num-traits = "0.2.15"
